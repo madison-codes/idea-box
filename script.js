@@ -3,18 +3,23 @@ function clearInputFields() {
   $('.body-input-field').val('');
 }
 
-// function getTime() {
-//   var uniqueTime = Date.now();
-// }
+function Idea(id, title, body) {
+  this.id = id;
+  this.title = title;
+  this.body = body;
+}
 
 function createIdea() {
   var ideaTitle = $('.title-input-field').val();
   var ideaBody = $('.body-input-field').val();
   var uniqueId = Date.now();
-  $('.idea-list-container').append(`<article id=${uniqueId}><h2>${ideaTitle}</h2><p>${ideaBody}</p></article>`);
+  // make an idea object using an Idea constructor
+  var idea = new Idea(uniqueId, ideaTitle, ideaBody);
+  $('.idea-list-container').append(`<article id=${idea.id}><h2>${idea.title}</h2><p>${idea.body}</p></article>`);
 }
 
 $('.save-button').on('click', function() {
-  createIdea();
+  var idea = createIdea();
+  // save to localstorage
   clearInputFields();
 });
