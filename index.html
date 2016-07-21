@@ -6,22 +6,29 @@
     <title>Idea Box</title>
     <link rel="stylesheet" href="css/reset.css" charset="utf-8">
     <link rel="stylesheet" href="css/style.css" charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <header>
-      <h1>ideabox</h1>
+      <h1 class="teal">idea</h1><h1 class="grey">box</h1>
       <div class="input-container">
-        <input type="text" class="title-input-field" placeholder="Title"/>
-        <input type="text" class="body-input-field" placeholder="Body"/>
-        <button class="save-button">Save</button>
+        <input type="text" class="title-input-field input" placeholder="Title"/>
+        <input type="text" class="body-input-field input" placeholder="Body"/>
+        <button class="save-button input">save</button>
       </div>
     </header>
-    <body>
-      <input class="search-field" type="search" placeholder="Search"/>
+    <div class="main-content">
+      <input class="search-field input" type="search" placeholder="Search"/>
+      <button class="quality-button down">Down</button>
+      <button class="quality-button up">Up</button>
       <section class="idea-list-container">
       </section>
       <script src="jquery.js" charset="utf-8"></script>
       <script src="script.js" charset="utf-8"></script>
+    </div>
   </body>
 </html>
+
+<!-- <input type="image" class="quality-button up" src="../images/upvote.svg.png"></input> -->
+<!-- <article id=${idea.id}><h2>H2 Title</h2><p>idea Body</p></article> -->

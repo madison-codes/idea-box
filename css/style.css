@@ -1,0 +1,94 @@
+/*font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto Slab', serif;*/
+
+/*HEADER INFORMATION*/
+header {
+  background-color: #E5F3F2;
+  height: 30vh;
+  width: 100vw;
+  text-align: center;
+}
+h1 {
+  display: inline-block;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+h1.teal {
+  font-family: 'Roboto Slab', serif;
+  font-size: 2em;
+  color: #00A79D;
+}
+
+h1.grey {
+  font-family: 'Roboto Slab', serif;
+  font-size: 2em;
+  color: #6D6E71;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+}
+
+.input {
+  margin-bottom: 13px;
+  height: 20px;
+  width: 100%;
+}
+
+.save-button {
+  color: #FFFFFF;
+  background-color: #00A79D;
+  border: none;
+  font-size: 1em;
+  padding: 6px;
+  height: 50%;
+}
+
+.save-button:hover {
+  color: #FFFFFF;
+  background-color: #045E55;
+}
+
+/*MAIN CONTENT FORMAT*/
+
+.main-content {
+  /*background-color: pink;*/
+  margin: auto;
+  width: 70%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.idea-list-container {
+  /*background-color: yellow;*/
+}
+
+/*Idea CONTENT*/
+
+article {
+  border-bottom: 2px solid #6D6E71;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.25em;
+  color: #6D6E71;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #939598;
+  width: 80%;
+  height: 100px;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+}
+
+.down {
+  background: url("../images/upvote.svg.png");
+}
