@@ -1,7 +1,5 @@
-/*font-family: 'Open Sans', sans-serif;
-font-family: 'Roboto Slab', serif;*/
+/*HEADER FORMAT*/
 
-/*HEADER INFORMATION*/
 header {
   background-color: #E5F3F2;
   height: 30vh;
@@ -57,6 +55,7 @@ h1.grey {
 .main-content {
   /*background-color: pink;*/
   margin: auto;
+  margin-top: 30px;
   width: 70%;
   font-family: 'Open Sans', sans-serif;
 }
@@ -89,6 +88,26 @@ p {
   margin-bottom: 10px;
 }
 
-.down {
-  background: url("../images/upvote.svg.png");
+input.delete-button {
+  background-color: transparent;
+  background-position: center;
+  height: 20px;
+  width: 20px;
+  background-size: 20px;
+}
+
+input.up {
+  background-color: transparent;
+  background-position: center;
+  height: 20px;
+  width: 20px;
+  background-size: 20px;
+}
+
+input.down {
+  background-color: transparent;
+  background-position: center;
+  height: 20px;
+  width: 20px;
+  background-size: 20px;
 }
