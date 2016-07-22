@@ -88,7 +88,18 @@ function createIdea() {
 function render(ideas) {
   $('.idea-list-container').empty();
   ideas.forEach(function(idea) {
-    $('.idea-list-container').append(`<article id=${idea.id}><h2>${idea.title}</h2><p>${idea.body}</p></article>`);
+    $('.idea-list-container').append(`
+      <article id=${idea.id}>
+      <span class="top line">
+      <h2>${idea.title}</h2>
+      <button type="button" class="delete-button"/></button></span>
+      <p>${idea.body}</p>
+      <span class="bottom-line">
+      <button type="button" class="quality-button up"/></button>
+      <button type="button" class="quality-button down"/></button>
+      <p class="quality">quality: </p>
+      </span>
+      </article>`);
   });
 }
 
