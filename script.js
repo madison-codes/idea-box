@@ -3,9 +3,20 @@ function clearInputFields() {
   $('.body-input-field').val('');
 }
 
+// // Constructor: Allows to make n amount of instances (object)
 function IdeaLocalStorage() {
   this.storeKey = 'ideas';
+  this.ideas = [];
 }
+//
+// // Singleton Object
+// var IdeaLocalStorage = {
+//   storeKey: 'ideas',
+//   ideas: [],
+//   removeIdea: function(id) {
+//       // refactoring to a singleton
+//   }
+// };
 
 IdeaLocalStorage.prototype.getIdeas = function() {
   return JSON.parse(window.localStorage.getItem(this.storeKey)) || [];
@@ -58,6 +69,72 @@ function createIdea() {
 
   render(ideaStore.getIdeas());
 }
+
+// DELETE BUTTON
+// $('.idea-list-container').on('click', '.delete-button', function() {
+//   var uniqueId = Date.now();
+//   ideaStore.removeIdea(uniqueId);
+//   render(ideaStore.getIdeas());
+// })
+
+function render(ideas) {
+  $('.idea-list-container').empty();
+  ideas.forEach(function(idea) {
+    $('.idea-list-container').append(`
+      <article id=${idea.id}>
+      <input type="image" src="images/delete.svg.png" class="delete-button"/>
+      <h2>${idea.title}</h2>
+      <p>${idea.body}</p>
+      <input type="image" src="images/upvote.svg.png" class="quality-button up"/>
+      <input type="image" src="images/downvote.svg.png" class="quality-button down"/>
+      </article>
+    `);
+  });
+}
+
+$('.search-field').on('keyup', function() {
+  var searchText = $(this).val();
+  var searchResults = ideaStore.search(searchText);
+  render(searchResults);
+});
+
+$('.save-button').on('click', function() {
+  createIdea();
+  clearInputFields();
+});
+
+render(ideaStore.getIdeas());
+
+// DELETE BUTTON
+
+// EDITABLE FIELD FOR TITLE & BOVY
+
+// event handeler for each
+// triggers change to body/ title
+// saves and rerenders on event handeler (return or click out)
+
+
+// QUALITY
+
+// event handeler to trigger event
+// counter function up
+// counter function down
+// matching function with array
+
+
+
+// $('.idea-list-container').on('click', '#delete-article-button', function() {
+//   deleteIdea();
+// });
+
+// create objects around behaviour
+
+//run all logic and seperately from DOM and destroy and recreate DOM with every interaction
+
+// to clear everything (all stored data) set Store to empty string
+
+
+
 //
 // function deleteIdea() {
 //   $('#delete-article-button').closest('article').remove();
@@ -84,33 +161,3 @@ function createIdea() {
 //   this.title = title;
 //   this.body = body;
 // }
-
-function render(ideas) {
-  $('.idea-list-container').empty();
-  ideas.forEach(function(idea) {
-    $('.idea-list-container').append(`<article id=${idea.id}><h2>${idea.title}</h2><p>${idea.body}</p></article>`);
-  });
-}
-
-$('.search-field').on('keyup', function() {
-  var searchText = $(this).val();
-  var searchResults = ideaStore.search(searchText);
-  render(searchResults);
-});
-
-$('.save-button').on('click', function() {
-  createIdea();
-  clearInputFields();
-});
-
-render(ideaStore.getIdeas());
-
-// $('.idea-list-container').on('click', '#delete-article-button', function() {
-//   deleteIdea();
-// });
-
-// create objects around behaviour
-
-//run all logic and seperately from DOM and destroy and recreate DOM with every interaction
-
-// to clear everything (all stored data) set Store to empty string
