@@ -82,6 +82,7 @@ function render(ideas) {
   ideas.forEach(function(idea) {
     $('.idea-list-container').append(`
       <article id=${idea.id}>
+<<<<<<< HEAD
       <input type="image" src="images/delete.svg.png" class="delete-button"/>
       <h2>${idea.title}</h2>
       <p>${idea.body}</p>
@@ -89,6 +90,18 @@ function render(ideas) {
       <input type="image" src="images/downvote.svg.png" class="quality-button down"/>
       </article>
     `);
+=======
+      <span class="top line">
+      <h2>${idea.title}</h2>
+      <button type="button" class="delete-button"/></button></span>
+      <p>${idea.body}</p>
+      <span class="bottom-line">
+      <button type="button" class="quality-button up"/></button>
+      <button type="button" class="quality-button down"/></button>
+      <p class="quality">quality: </p>
+      </span>
+      </article>`);
+>>>>>>> master
   });
 }
 

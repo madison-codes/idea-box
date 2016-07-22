@@ -2,10 +2,11 @@
 
 header {
   background-color: #E5F3F2;
-  height: 30vh;
+  height: 35vh;
   width: 100vw;
   text-align: center;
 }
+
 h1 {
   display: inline-block;
   margin-top: 25px;
@@ -14,19 +15,20 @@ h1 {
 
 h1.teal {
   font-family: 'Roboto Slab', serif;
-  font-size: 2em;
+  font-size: 3em;
   color: #00A79D;
 }
 
 h1.grey {
   font-family: 'Roboto Slab', serif;
-  font-size: 2em;
+  font-size: 3em;
   color: #6D6E71;
 }
+
 .input-container {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 60%;
   margin: auto;
 }
 
@@ -56,8 +58,15 @@ h1.grey {
   /*background-color: pink;*/
   margin: auto;
   margin-top: 30px;
-  width: 70%;
+  width: 60%;
   font-family: 'Open Sans', sans-serif;
+}
+
+.search-field {
+  height: 20px;
+  border-radius: 0;
+  width: 100%;
+  margin-bottom: 13px;
 }
 
 .idea-list-container {
@@ -72,42 +81,94 @@ article {
   flex-direction: column;
 }
 
+span {
+  display: inline-flex;
+  align-items: center;
+  align-content: space-between;
+}
+
 h2 {
   font-family: 'Roboto Slab', serif;
   font-size: 1.25em;
+  width: 90%;
   color: #6D6E71;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
-}
+  display: inline-flex;
+  flex-direction: row;}
 
 p {
   color: #939598;
-  width: 80%;
-  height: 100px;
+  width: 100%;
   word-wrap: break-word;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-input.delete-button {
+.delete-button {
+  background: url(../images/delete.svg.png) no-repeat;
   background-color: transparent;
   background-position: center;
+  background-size: 20px;
+  border: none;
   height: 20px;
   width: 20px;
+  margin-left: auto;
+  /*display: inline-flex;
+  flex-direction: row;*/
+  /*align-content: space-between;*/
+}
+
+.delete-button:hover {
+  background: url(../images/delete-hover.svg.png);
+  background-color: transparent;
   background-size: 20px;
 }
 
-input.up {
+.bottom-line {
+  margin-bottom: 20px;
+}
+
+p.quality {
+  display: inline-block;
+  align-items: center;
+  margin-bottom: 4px;
+  margin-left: 20px;
+}
+
+.up {
+  background: url(../images/upvote.svg.png) no-repeat;
   background-color: transparent;
   background-position: center;
+  border: none;
+  background-size: 20px;
   height: 20px;
   width: 20px;
+  display: inline-block;
+  align-items: center;
+}
+
+.up:hover {
+  background: url(../images/upvote-hover.svg.png) no-repeat;
+  background-color: transparent;
+  background-position: center;
   background-size: 20px;
 }
 
-input.down {
+.down {
+  background: url(../images/downvote.svg.png) no-repeat;
   background-color: transparent;
   background-position: center;
+  border: none;
+  background-size: 20px;
   height: 20px;
   width: 20px;
+  display: inline-block;
+  align-items: center;
+}
+
+.down:hover {
+  background: url(../images/downvote-hover.svg.png) no-repeat;
+  background-color: transparent;
+  background-position: center;
   background-size: 20px;
 }
