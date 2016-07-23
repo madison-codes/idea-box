@@ -5,15 +5,8 @@ function clearInputFields() {
   $('.body-input-field').val('');
 }
 
-// function IdeaLocalStorage() {
-//   this.storeKey = ideas;
-//   this.ideaStore = [];
-// }
-//
-
-// *mentor
 function IdeaLocalStorage() {
-  this.storeKey = 'ideas';
+  JSON.parse(localStorage.getItem('ideas'));
 }
 
 function createIdea() {
@@ -88,7 +81,7 @@ IdeaLocalStorage.prototype.updateIdea = function(e) {
     if(existingIdea.uniqueId !== idea.uniqueId) newIdeas.push(idea);
     else newIdeas.push(idea);
   });
-    window.localStorage.setItem(this.storeKey, JSON.stringify(newIdeas));
+    window.localStorage.setItem('ideas', JSON.stringify(newIdeas));
     render(ideaStore.getIdeas());
 };
   // WHAT WAS WORKING FOR UPDATEIDEA
