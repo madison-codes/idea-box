@@ -82,17 +82,17 @@ IdeaLocalStorage.prototype.updateIdea = function(e) {
   var id = parseInt($(e.target).closest('article').attr('id'));
   var ideaTitle = $(e.target).closest('.edit-title').text();
   var ideaBody = $(e.target).closest('.edit-body').text();
+  var idea = { id: id, title: ideaTitle, body: ideaBody };
+  ideaStore.addIdea(idea);
   ideas.forEach(function(existingIdea) {
     if(existingIdea.uniqueId !== idea.uniqueId) newIdeas.push(idea);
     else newIdeas.push(idea);
   });
     window.localStorage.setItem(this.storeKey, JSON.stringify(newIdeas));
+    render(ideaStore.getIdeas());
 };
   // WHAT WAS WORKING FOR UPDATEIDEA
-//   var idea = { id: id, title: ideaTitle, body: ideaBody };
-//     ideaStore.addIdea(idea);
 //
-//     render(ideaStore.getIdeas());
 // };
 
 IdeaLocalStorage.prototype.search = function(searchText) {
