@@ -39,7 +39,6 @@ function render(ideas) {
   });
 }
 
-
 IdeaLocalStorage.prototype.getIdeas = function() {
   return JSON.parse(window.localStorage.getItem(this.storeKey)) || [];
 };
@@ -60,40 +59,38 @@ IdeaLocalStorage.prototype.removeIdea = function(e) {
   render(ideaStore.getIdeas());
 };
 
-// +IdeaLocalStorage.prototype.removeIdea = function(uniqueId) {
-//   +  var ideas = this.getIdeas();
-//   +  var newIdeas = [];
-//   +  newIdeas.forEach(function(idea) {
-//     +      if(!idea.uniqueId === uniqueId) newIdeas.push(idea);
-//     +  })
-//     +  window.localStorage.setItem(this.storeKey, JSON.stringify(newIdeas));
-//   }
+function findIdea(id) {
+  var collection = $.makeArray($('.idea-list-container').find('article'));
+  return collection.filter(function(idea) { return idea.id == id })[0];
+}
 
-IdeaLocalStorage.prototype.updateIdea = function(e) {
-  var ideas = this.getIdeas();
-  var newIdeas = [];
-  var id = parseInt($(e.target).closest('article').attr('id'));
-  var ideaTitle = $(e.target).closest('.edit-title').text();
-  var ideaBody = $(e.target).closest('.edit-body').text();
-  var idea = { id: id, title: ideaTitle, body: ideaBody };
-  ideaStore.addIdea(idea);
-  ideas.forEach(function(existingIdea) {
-    if(existingIdea.uniqueId !== idea.uniqueId) newIdeas.push(idea);
-    else newIdeas.push(idea);
-  });
-    window.localStorage.setItem('ideas', JSON.stringify(newIdeas));
-    render(ideaStore.getIdeas());
-};
-  // WHAT WAS WORKING FOR UPDATEIDEA
-//
-// };
+IdeaLocalStorage.prototype.updateIdea = function() {
+  var newIdeas = this.getIdeas().map(function(idea) {
+  var latest = findIdea(parseInt(idea.id))
+  var newTitle = $(latest).find('.edit-title').text();
+  var newBody = $(latest).find('.edit-body').text();
+  var full = newTitle + newBody;
+
+  if (newTitle != idea.title) {
+    idea.title = newTitle;
+  }
+  if (newBody != idea.body) {
+    idea.body = newBody;
+  }
+  return idea;
+});
+  window.localStorage.setItem(this.storeKey, JSON.stringify(newIdeas));
+  render(ideaStore.getIdeas());
 
 IdeaLocalStorage.prototype.search = function(searchText) {
   var ideas = this.getIdeas();
   var results = [];
   ideas.forEach(function(idea) {
-      if(idea.title.indexOf(searchText) >= 0) results.push(idea);
-      else if (idea.body.indexOf(searchText) >= 0) results.push(idea);
+    if(idea.title.indexOf(searchText) >= 0) {
+      results.push(idea);
+    } else if (idea.body.indexOf(searchText) >= 0) {
+      results.push(idea);
+    }
   });
   return results;
 };
@@ -115,17 +112,27 @@ $('.save-button').on('click', function(ideas) {
 
 render(ideaStore.getIdeas());
 
-$('.main-content').keypress(function(e) {
+$('.idea-list-container').keypress(function(e) {
   if(e.which == 13) {
-  ideaStore.updateIdea(e);
+    ideaStore.updateIdea(e);
   }
 });
 
+// STARTING OUR SAVE ON CLICK OUTSIDE
+// $('article').on('DOMSubtreeModified', '.idea-edit', function(e) {
+//   ideaStore.updateIdea();
+// });
+
+
+
 // CLICK OUTSIDE EVENTLISTENER
-// $(document).on ('click', function() {
-//       console.log('hello');
-//     });
-//
-// $('.idea-edit').on('click', function(event) {
-//   event.isImmediatePropagationStopped();
-//   console.log('clickout');
+// $(document).on('click', function() {
+//   console.log('trigger');
+//   if (ideaStore.editMode) {
+//     ideaStore.editMode = false;
+//     var ideas = ideaStore.getIdeas();
+//     window.localStorage.setItem(this.storeKey, JSON.stringify(ideas));
+//     console.log(ideas);
+//     render(ideas);
+//   }
+// });
