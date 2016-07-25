@@ -13,10 +13,10 @@ function createIdea() {
   var ideaTitle = $('.title-input-field').val();
   var ideaBody = $('.body-input-field').val();
   var uniqueId = Date.now();
+  var ideaQuality = "swill";
   // make an idea object using an Idea constructor
-  var idea = { id: uniqueId, title: ideaTitle, body: ideaBody };
+  var idea = { id: uniqueId, title: ideaTitle, body: ideaBody, quality: ideaQuality};
   ideaStore.addIdea(idea);
-
   render(ideaStore.getIdeas());
 }
 
@@ -32,11 +32,16 @@ function render(ideas) {
       <span class="bottom-line">
       <button type="button" class="quality-button up"/></button>
       <button type="button" class="quality-button down"/></button>
-      <p class="quality">quality: </p>
+      <p class="quality">quality: ${idea.quality}</p>
       </span>
       </article>
     `);
   });
+}
+
+function findIdea(id) {
+  var collection = $.makeArray($('.idea-list-container').find('article'));
+  return collection.filter(function(idea) { return idea.id == id })[0];
 }
 
 IdeaLocalStorage.prototype.getIdeas = function() {
@@ -59,14 +64,10 @@ IdeaLocalStorage.prototype.removeIdea = function(e) {
   render(ideaStore.getIdeas());
 };
 
-function findIdea(id) {
-  var collection = $.makeArray($('.idea-list-container').find('article'));
-  return collection.filter(function(idea) { return idea.id == id })[0];
-}
 
 IdeaLocalStorage.prototype.updateIdea = function() {
   var newIdeas = this.getIdeas().map(function(idea) {
-  var latest = findIdea(parseInt(idea.id))
+  var latest = findIdea(parseInt(idea.id));
   var newTitle = $(latest).find('.edit-title').text();
   var newBody = $(latest).find('.edit-body').text();
   var full = newTitle + newBody;
@@ -81,6 +82,7 @@ IdeaLocalStorage.prototype.updateIdea = function() {
 });
   window.localStorage.setItem(this.storeKey, JSON.stringify(newIdeas));
   render(ideaStore.getIdeas());
+};
 
 IdeaLocalStorage.prototype.search = function(searchText) {
   var ideas = this.getIdeas();
@@ -110,6 +112,7 @@ $('.save-button').on('click', function(ideas) {
   clearInputFields();
 });
 
+// render ideas on page load
 render(ideaStore.getIdeas());
 
 $('.idea-list-container').keypress(function(e) {
