@@ -32,13 +32,12 @@ function render(ideas) {
       <span class="bottom-line">
       <button type="button" class="quality-button up"/></button>
       <button type="button" class="quality-button down"/></button>
-      <p class="quality">quality: ${idea.quality}</p>
+      <p class="level">quality: <span class="quality">${idea.quality}</span></p>
       </span>
       </article>
     `);
   });
 }
-
 function findIdea(id) {
   var collection = $.makeArray($('.idea-list-container').find('article'));
   return collection.filter(function(idea) { return idea.id == id })[0];
@@ -96,6 +95,50 @@ IdeaLocalStorage.prototype.search = function(searchText) {
   });
   return results;
 };
+
+IdeaLocalStorage.prototype.levelUp = function(e) {
+  var id = parseInt($(e.target).closest('article').attr('id'));
+  var quality = $(e.target).siblings('.level').children().text();
+  var ideas = this.getIdeas();
+  ideas.forEach(function(idea) {
+    if (idea.id === id) {
+      if (idea.quality == 'plausible') {
+        idea.quality = 'genius';
+      }
+      if (idea.quality == 'swill') {
+        idea.quality = 'plausible';
+      }
+    }
+  });
+  window.localStorage.setItem(this.storeKey, JSON.stringify(ideas));
+  render(ideaStore.getIdeas());
+};
+
+IdeaLocalStorage.prototype.levelDown = function(e) {
+  var id = parseInt($(e.target).closest('article').attr('id'));
+  var quality = $(e.target).siblings('.level').children().text();
+  var ideas = this.getIdeas();
+  ideas.forEach(function(idea) {
+    if (idea.id === id) {
+      if (idea.quality == 'plausible') {
+        idea.quality = 'swill';
+      }
+      if (idea.quality == 'genius') {
+        idea.quality = 'plausible';
+      }
+    }
+  });
+  window.localStorage.setItem(this.storeKey, JSON.stringify(ideas));
+  render(ideaStore.getIdeas());
+};
+
+$('.idea-list-container').on('click', '.down', function(e) {
+  ideaStore.levelDown(e);
+});
+
+$('.idea-list-container').on('click', '.up', function(e) {
+  ideaStore.levelUp(e);
+});
 
 $('.idea-list-container').on('click', '.delete-button', function(e) {
   ideaStore.removeIdea(e);
