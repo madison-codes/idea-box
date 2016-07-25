@@ -164,21 +164,6 @@ $('.idea-list-container').keypress(function(e) {
   }
 });
 
-// STARTING OUR SAVE ON CLICK OUTSIDE
-// $('article').on('DOMSubtreeModified', '.idea-edit', function(e) {
-//   ideaStore.updateIdea();
-// });
-
-
-
-// CLICK OUTSIDE EVENTLISTENER
-// $(document).on('click', function() {
-//   console.log('trigger');
-//   if (ideaStore.editMode) {
-//     ideaStore.editMode = false;
-//     var ideas = ideaStore.getIdeas();
-//     window.localStorage.setItem(this.storeKey, JSON.stringify(ideas));
-//     console.log(ideas);
-//     render(ideas);
-//   }
-// });
+$('.idea-list-container').on('focusout', '.idea-edit', function(e) {
+  ideaStore.updateIdea(e);
+});
