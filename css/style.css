@@ -3,74 +3,70 @@
 header {
   background-color: #E5F3F2;
   height: 35vh;
-  width: 100vw;
   text-align: center;
+  width: 100vw;
 }
 
 h1 {
   display: inline-block;
-  margin-top: 25px;
   margin-bottom: 25px;
+  margin-top: 25px;
 }
 
 h1.teal {
+  color: #00A79D;
   font-family: 'Roboto Slab', serif;
   font-size: 3em;
-  color: #00A79D;
 }
 
 h1.grey {
+  color: #6D6E71;
   font-family: 'Roboto Slab', serif;
   font-size: 3em;
-  color: #6D6E71;
 }
 
 .input-container {
   display: flex;
   flex-direction: column;
-  width: 60%;
   margin: auto;
+  width: 60%;
 }
 
 .input {
-  margin-bottom: 13px;
   height: 20px;
+  margin-bottom: 13px;
   width: 100%;
 }
 
 .save-button {
-  color: #FFFFFF;
   background-color: #00A79D;
   border: none;
+  color: #FFFFFF;
   font-size: 1em;
-  padding: 6px;
   height: 50%;
+  margin-top: 15px; 
+  padding: 6px;
 }
 
 .save-button:hover {
-  color: #FFFFFF;
   background-color: #045E55;
+  color: #FFFFFF;
 }
 
 /*MAIN CONTENT FORMAT*/
 
 .main-content {
-  /*background-color: pink;*/
+  font-family: 'Open Sans', sans-serif;
   margin: auto;
   margin-top: 30px;
   width: 60%;
-  font-family: 'Open Sans', sans-serif;
 }
 
 .search-field {
-  height: 20px;
   border-radius: 0;
-  width: 100%;
+  height: 20px;
   margin-bottom: 13px;
-}
-
-.idea-list-container {
-  /*background-color: yellow;*/
+  width: 100%;
 }
 
 /*Idea CONTENT*/
@@ -82,26 +78,26 @@ article {
 }
 
 span {
-  display: inline-flex;
-  align-items: center;
   align-content: space-between;
+  align-items: center;
+  display: inline-flex;
 }
 
 h2 {
+  color: #6D6E71;
+  display: inline-flex;
+  flex-direction: row;
   font-family: 'Roboto Slab', serif;
   font-size: 1.25em;
-  width: 90%;
-  color: #6D6E71;
-  margin-top: 20px;
   margin-bottom: 10px;
-  display: inline-flex;
-  flex-direction: row;}
+  margin-top: 20px;
+  width: 90%;
+}
 
 p {
   color: #939598;
   width: 100%;
   word-wrap: break-word;
-  margin-bottom: 20px;
 }
 
 .delete-button {
@@ -111,11 +107,8 @@ p {
   background-size: 20px;
   border: none;
   height: 20px;
-  width: 20px;
   margin-left: auto;
-  /*display: inline-flex;
-  flex-direction: row;*/
-  /*align-content: space-between;*/
+  width: 20px;
 }
 
 .delete-button:hover {
@@ -125,26 +118,27 @@ p {
 }
 
 .bottom-line {
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
 p.quality {
-  display: inline-block;
   align-items: center;
+  display: inline-block;
   margin-bottom: 4px;
   margin-left: 20px;
 }
 
 .up {
+  align-items: center;
   background: url(../images/upvote.svg.png) no-repeat;
   background-color: transparent;
   background-position: center;
-  border: none;
   background-size: 20px;
+  border: none;
+  display: inline-block;
   height: 20px;
   width: 20px;
-  display: inline-block;
-  align-items: center;
 }
 
 .up:hover {
@@ -155,15 +149,17 @@ p.quality {
 }
 
 .down {
+  align-items: center;
   background: url(../images/downvote.svg.png) no-repeat;
   background-color: transparent;
   background-position: center;
-  border: none;
   background-size: 20px;
-  height: 20px;
-  width: 20px;
+  border: none;
   display: inline-block;
-  align-items: center;
+  height: 20px;
+  margin-left: 2px;
+  margin-right: 5px;
+  width: 20px;
 }
 
 .down:hover {
@@ -171,4 +167,15 @@ p.quality {
   background-color: transparent;
   background-position: center;
   background-size: 20px;
+}
+
+/* Media queries: small screens */
+@media (max-width: 450px) {
+  header {
+    height: 48vh;
+  }
+
+  .body-input-field {
+    height: 60px;
+  }
 }

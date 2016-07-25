@@ -14,8 +14,7 @@ function createIdea() {
   var ideaBody = $('.body-input-field').val();
   var uniqueId = Date.now();
   var ideaQuality = "swill";
-  // make an idea object using an Idea constructor
-  var idea = { id: uniqueId, title: ideaTitle, body: ideaBody, quality: ideaQuality};
+  var idea = { id: uniqueId, title: ideaTitle, body: ideaBody, quality: ideaQuality };
   ideaStore.addIdea(idea);
   render(ideaStore.getIdeas());
 }
@@ -38,6 +37,7 @@ function render(ideas) {
     `);
   });
 }
+
 function findIdea(id) {
   var collection = $.makeArray($('.idea-list-container').find('article'));
   return collection.filter(function(idea) { return idea.id == id })[0];
@@ -63,14 +63,12 @@ IdeaLocalStorage.prototype.removeIdea = function(e) {
   render(ideaStore.getIdeas());
 };
 
-
 IdeaLocalStorage.prototype.updateIdea = function() {
   var newIdeas = this.getIdeas().map(function(idea) {
   var latest = findIdea(parseInt(idea.id));
   var newTitle = $(latest).find('.edit-title').text();
   var newBody = $(latest).find('.edit-body').text();
   var full = newTitle + newBody;
-
   if (newTitle != idea.title) {
     idea.title = newTitle;
   }
@@ -155,8 +153,6 @@ $('.save-button').on('click', function(ideas) {
   clearInputFields();
 });
 
-// render ideas on page load
-render(ideaStore.getIdeas());
 
 $('.idea-list-container').keypress(function(e) {
   if(e.which == 13) {
@@ -167,3 +163,6 @@ $('.idea-list-container').keypress(function(e) {
 $('.idea-list-container').on('focusout', '.idea-edit', function(e) {
   ideaStore.updateIdea(e);
 });
+
+// Render ideas on page load
+render(ideaStore.getIdeas());
